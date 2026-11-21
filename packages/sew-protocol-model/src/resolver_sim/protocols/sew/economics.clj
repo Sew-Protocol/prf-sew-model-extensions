@@ -16,7 +16,7 @@
             [resolver-sim.economics.payoffs :as payoffs]
             [resolver-sim.economics.calculations :as core-econ]
             [resolver-sim.economics.slash-distribution :as sd]
-            [resolver-sim.protocols.registry :as registry]))
+            [resolver-sim.extensions.api.protocol.v1 :as protocol-api]))
 
 (def ECONOMIC-POLICIES
   "Recommended Sew parameter bands for governance.
@@ -258,8 +258,17 @@
   ([stake multiplier]
    (core-econ/calculate-capacity-limit stake multiplier)))
 
+(defn- load-sew-pro-rata-economics-extension! []
+  ;; The Sew model owns the optional adapter seam. Load it when an operation
+  ;; crosses that seam so consumers need only select the package dependency;
+  ;; the PRF host registry does not need Sew-specific bootstrap knowledge.
+  (when (io/resource
+         "resolver_sim/protocols/sew/pro_rata/economics_extension.clj")
+    (require 'resolver-sim.protocols.sew.pro-rata.economics-extension)))
+
 (defn- sew-pro-rata-economics-capability [capability-id operation]
-  (or (registry/get-capability "sew-v1" capability-id)
+  (load-sew-pro-rata-economics-extension!)
+  (or (protocol-api/get-capability "sew-v1" capability-id)
       (throw (ex-info "Sew operation requires the pro-rata economics integration"
                       {:component :prf/sew-pro-rata-economics-v1
                        :capability/id capability-id
