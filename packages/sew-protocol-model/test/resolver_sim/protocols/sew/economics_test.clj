@@ -5,8 +5,24 @@
             [resolver-sim.hash.canonical :as hc]
             [resolver-sim.economics.slash-distribution :as sd]
             [resolver-sim.protocols.sew.economics :as sew-econ]
-                        [resolver-sim.pro-rata.allocation :as pro-rata]
-                        [resolver-sim.pro-rata.evidence :as mechanism-evidence]))
+            [resolver-sim.protocols.registry :as registry]
+            [resolver-sim.pro-rata.allocation :as pro-rata]
+            [resolver-sim.pro-rata.evidence :as mechanism-evidence]))
+
+(deftest optional-economics-facade-re-registers-after-registry-reset
+  (let [input {:slash-amount 10
+               :liable-parties [{:id :resolver-a
+                                 :slashable-stake 10
+                                 :available-slashable 10}]}]
+    (try
+      ;; Load once before reset so the test covers the require-no-op case.
+      (is (= 10 (:recovered-total
+                 (sew-econ/calculate-sew-slash-allocation input))))
+      (registry/unregister-extension! "sew-v1")
+      (is (= 10 (:recovered-total
+                 (sew-econ/calculate-sew-slash-allocation input))))
+      (finally
+        (registry/get-protocol "sew-v1")))))
 
 (deftest sew-economic-policy-helpers
   (testing "Sew-specific fees, bonds, slashes, and escrow caps live in the Sew adapter"

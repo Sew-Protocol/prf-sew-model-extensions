@@ -264,7 +264,11 @@
   ;; the PRF host registry does not need Sew-specific bootstrap knowledge.
   (when (io/resource
          "resolver_sim/protocols/sew/pro_rata/economics_extension.clj")
-    (require 'resolver-sim.protocols.sew.pro-rata.economics-extension)))
+    (require 'resolver-sim.protocols.sew.pro-rata.economics-extension)
+    ;; `require` is a no-op after the first load. Re-register explicitly so
+    ;; this optional adapter remains usable after a registry reset.
+    ((requiring-resolve
+      'resolver-sim.protocols.sew.pro-rata.economics-extension/register-capabilities!))))
 
 (defn- sew-pro-rata-economics-capability [capability-id operation]
   (load-sew-pro-rata-economics-extension!)
