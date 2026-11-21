@@ -18,7 +18,18 @@
             :extends :prf/framework-v1,
             :components
             [:prf/sew-protocol-model-v1
-             :prf/sew-yield-integration-v1]}],
+             :prf/sew-yield-integration-v1]}
+  #:profile{:id :prf/sew-pro-rata-application-candidate-v1,
+            :name "sew-pro-rata-application",
+            :version 1,
+            :status :candidate,
+            :protocol :prf.protocol/sew,
+            :extends :prf/framework-v1,
+            :components
+            [:prf/ideal-pro-rata-v1
+             :prf/sew-protocol-model-v1
+             :prf/sew-pro-rata-economics-v1
+             :prf/sew-pro-rata-application-v1]}],
  :components
  #:prf{:sew-escrow-kernel-v1
        #:component{:plane :protocol-kernel,
@@ -120,6 +131,48 @@
                      "sew/policies/default-slash-distribution-v1.edn",
                      :kind :runtime-configuration,
                      :package-resource? true}],
+                   :source-kind :package-classpath},
+       :sew-pro-rata-economics-v1
+       #:component{:plane :protocol-adapter,
+                   :requires [:prf/pro-rata-evaluation-v1],
+                   :owned-namespaces
+                   [resolver-sim.protocols.sew.pro-rata.economics
+                    resolver-sim.protocols.sew.pro-rata.economics-extension],
+                   :entry-namespaces
+                   [resolver-sim.protocols.sew.pro-rata.economics-extension],
+                   :material [],
+                   :source-kind :package-classpath},
+       :sew-pro-rata-slashing-v1
+       #:component{:plane :protocol-adapter,
+                   :requires [:prf/sew-protocol-model-v1
+                              :prf/sew-pro-rata-economics-v1
+                              :prf/pro-rata-evaluation-v1],
+                   :owned-namespaces
+                   [resolver-sim.protocols.sew.pro-rata.evidence
+                    resolver-sim.protocols.sew.extension
+                    resolver-sim.protocols.sew.evidence.slashing],
+                   :entry-namespaces
+                   [resolver-sim.protocols.sew.extension
+                    resolver-sim.protocols.sew.pro-rata.evidence
+                    resolver-sim.protocols.sew.evidence.slashing],
+                   :material [],
+                   :source-kind :package-classpath},
+       :sew-pro-rata-application-v1
+       #:component{:plane :protocol-adapter,
+                   :requires [:prf/framework-v1
+                              :prf/ideal-pro-rata-v1
+                              :prf/sew-protocol-model-v1],
+                   :owned-namespaces
+                   [resolver-sim.adapters.sew.aggregate-held-credit
+                    resolver-sim.pro-rata.realized-allocation-aggregate-held-credit
+                    resolver-sim.protocols.sew.pro-rata-application
+                    resolver-sim.protocols.sew.apply-slash-distribution],
+                   :entry-namespaces
+                   [resolver-sim.adapters.sew.aggregate-held-credit
+                    resolver-sim.pro-rata.realized-allocation-aggregate-held-credit
+                    resolver-sim.protocols.sew.pro-rata-application
+                    resolver-sim.protocols.sew.apply-slash-distribution],
+                   :material [],
                    :source-kind :package-classpath},
        :sew-yield-integration-v1
        #:component{:plane :protocol-extension,
