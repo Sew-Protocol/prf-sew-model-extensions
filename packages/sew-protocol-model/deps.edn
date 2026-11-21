@@ -13,7 +13,11 @@
               :git/sha "a931b1878c7187ae3fb1db2919b462cd59927407"
               :deps/root "extensions/sew-pro-rata-economics"}}}
            :test {:extra-paths ["test"]
-                  :extra-deps {org.clojure/test.check {:mvn/version "1.1.1"}}}
+                  :extra-deps {org.clojure/test.check {:mvn/version "1.1.1"}
+                               org.protocol-robustness/prf-sew-pro-rata-economics
+                               {:git/url "https://github.com/Sew-Protocol/prf-sew-model-extensions.git"
+                                :git/sha "a931b1878c7187ae3fb1db2919b462cd59927407"
+                                :deps/root "extensions/sew-pro-rata-economics"}}}
            :in-tree-test {:extra-paths ["test"
                                         "../../extensions/sew-yield-integration/src"]
                           :extra-deps {org.clojure/test.check {:mvn/version "1.1.1"}}}}}

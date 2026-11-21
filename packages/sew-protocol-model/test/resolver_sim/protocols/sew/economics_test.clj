@@ -5,20 +5,23 @@
             [resolver-sim.hash.canonical :as hc]
             [resolver-sim.economics.slash-distribution :as sd]
             [resolver-sim.protocols.sew.economics :as sew-econ]
+            [resolver-sim.protocols.sew.pro-rata.economics-extension :as economics-extension]
             [resolver-sim.protocols.registry :as registry]
             [resolver-sim.pro-rata.allocation :as pro-rata]
             [resolver-sim.pro-rata.evidence :as mechanism-evidence]))
 
-(deftest optional-economics-facade-re-registers-after-registry-reset
+(deftest optional-economics-facade-fails-closed-until-adapter-registration
   (let [input {:slash-amount 10
                :liable-parties [{:id :resolver-a
                                  :slashable-stake 10
                                  :available-slashable 10}]}]
     (try
-      ;; Load once before reset so the test covers the require-no-op case.
-      (is (= 10 (:recovered-total
-                 (sew-econ/calculate-sew-slash-allocation input))))
       (registry/unregister-extension! "sew-v1")
+      (is (thrown-with-msg?
+           clojure.lang.ExceptionInfo
+           #"requires the pro-rata economics integration"
+           (sew-econ/calculate-sew-slash-allocation input)))
+      (economics-extension/register-capabilities!)
       (is (= 10 (:recovered-total
                  (sew-econ/calculate-sew-slash-allocation input))))
       (finally
