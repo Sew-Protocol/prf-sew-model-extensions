@@ -142,6 +142,29 @@
                    [resolver-sim.protocols.sew.pro-rata.economics-extension],
                    :material [],
                    :source-kind :package-classpath},
+       :sew/pro-rata-slash-test-vectors-v1
+       #:component{:plane :test-support,
+                   :requires [:prf/sew-pro-rata-economics-v1],
+                   :owned-namespaces
+                   [resolver-sim.protocols.sew.test-vectors.slash-allocation],
+                   :entry-namespaces
+                   [resolver-sim.protocols.sew.test-vectors.slash-allocation],
+                   :material
+                   [{:path "extensions/sew-pro-rata-test-vectors/deps.edn",
+                     :kind :package-manifest}
+                    {:path "extensions/sew-pro-rata-test-vectors/test/resolver_sim/protocols/sew/test_vectors/slash_allocation_test.clj",
+                     :kind :test-source}
+                    {:path "extensions/sew-pro-rata-test-vectors/resources/test-vectors/pro-rata/slash-allocation-slash-equal-weights.json",
+                     :kind :conformance-vector}
+                    {:path "extensions/sew-pro-rata-test-vectors/resources/test-vectors/pro-rata/slash-allocation-slash-unequal-weights.json",
+                     :kind :conformance-vector}
+                    {:path "extensions/sew-pro-rata-test-vectors/resources/test-vectors/pro-rata/slash-allocation-slash-capped-party.json",
+                     :kind :conformance-vector}
+                    {:path "extensions/sew-pro-rata-test-vectors/resources/test-vectors/pro-rata/slash-allocation-slash-zero-weight-party.json",
+                     :kind :conformance-vector}
+                    {:path "extensions/sew-pro-rata-test-vectors/resources/test-vectors/pro-rata/slash-allocation-slash-no-liable-parties.json",
+                     :kind :conformance-vector}],
+                   :source-kind :package-classpath},
        :sew-pro-rata-slashing-v1
        #:component{:plane :protocol-adapter,
                    :requires [:prf/sew-protocol-model-v1

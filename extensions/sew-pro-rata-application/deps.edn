@@ -7,7 +7,7 @@
          :deps/root "."}
         org.protocol-robustness/prf-sew-protocol-model
         {:git/url "https://github.com/Sew-Protocol/prf-sew-model-extensions.git"
-         :git/sha "620fbc03431fa99f6174a60ca9851579a7d69a18"
+         :git/sha "a96109cedad614d538885bc776a55db9789cab9b"
          :deps/root "packages/sew-protocol-model"}}
  :aliases {:test {:extra-paths ["test"]
                   :main-opts ["-m" "resolver-sim.protocols.sew.pro-rata-application-test-runner"]}}}
