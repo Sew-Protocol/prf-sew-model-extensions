@@ -3,6 +3,29 @@
 This is the portable semantic contract for `:sew/aggregate-held-credit.v1`.
 It contains no chain, contract, nonce, ABI, or FRAME concepts.
 
+## Authorization Boundary
+
+This contract validates allocation and held-credit effect semantics. It does
+not authorize a caller, prove that an on-chain operation may execute, verify a
+permit, or prove that an authorization was consumed exactly once. An adapter
+descriptor root identifies declared input; it is not evidence that deployed
+code enforces the descriptor's authority rules.
+
+The reviewed Sew Core EVM profile is pinned to
+[`SewCoreVault.sol` at source revision
+`17bf2f0693367bfa3909a5aa186f4e806a76a5ea`](https://github.com/Sew-Protocol/sew-protocol/blob/17bf2f0693367bfa3909a5aa186f4e806a76a5ea/contracts/core/SewCoreVault.sol).
+That profile has ordinary participant, resolver, keeper, and timelock gates;
+it has no Force Authorisation operation. Its pinned profile tests cover
+release, dispute resolution, timeout, pull settlement, and role-gated actions,
+not Force Authorisation
+([`SewCoreVaultProfile.t.sol`](https://github.com/Sew-Protocol/sew-protocol/blob/17bf2f0693367bfa3909a5aa186f4e806a76a5ea/test/foundry/core/SewCoreVaultProfile.t.sol)).
+The PRF model must not claim Force Authorisation parity with this EVM profile.
+
+Any future Sew EVM profile that supports Force Authorisation needs a separate,
+source-pinned qualification that composes this semantic contract with the
+exact on-chain authorization inputs and outcomes. Its preconditions must be
+derived from that profile's Solidity implementation and executable tests.
+
 ## Authoritative Inputs
 
 - Exact realized allocation, including `:allocation/hash` and canonical rows.

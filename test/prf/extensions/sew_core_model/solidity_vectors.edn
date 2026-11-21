@@ -1,4 +1,5 @@
 {:source/revision "17bf2f0693367bfa3909a5aa186f4e806a76a5ea"
+ :source/repository "https://github.com/Sew-Protocol/sew-protocol.git"
  :source/contract "contracts/core/SewCoreVault.sol"
  :source/test "test/foundry/core/SewCoreVaultProfile.t.sol"
  :source/manifest-sha256 "2aa8f10233e405ef85679ef8775269b6a4221b98915f387659fe9028badb9ba4"

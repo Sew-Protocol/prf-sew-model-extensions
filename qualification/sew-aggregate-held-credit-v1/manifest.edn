@@ -1,7 +1,7 @@
 {:export/schema :prf/clean-room-contract-export-v1
  :contract/id :prf/sew-aggregate-held-credit-v1
  :spec/file "SPEC.md"
- :spec/sha256 "11ef83ab46452c516a02fd3b8b792bb96bd7960f1ad5de7f330316a70a52a28c"
+ :spec/sha256 "54d167a946f2bfebbe25f1c8c3b462d8854d9375a8340a0d390529bd442622b0"
  :fixture/file "fixture.edn"
  :fixture/sha256 "90b1c99715f35e4bb4fbea0d1d2d68e7ad35a8a8ef133fb46a9ff5c61dbae449"
  :source/revision "dae8c031b82ec1781450a7992cde5174587ff256"
