@@ -15,7 +15,7 @@ checkout, resolve this aggregate package at an immutable Sew revision and pass
 the resulting classpath to Babashka:
 
 ```sh
-BABASHKA_CLASSPATH="$(clojure -Spath -Sdeps '{:deps {org.protocol-robustness/prf-sew-runtime {:git/url "https://github.com/Sew-Protocol/prf-sew-core-model.git" :git/sha "<immutable-revision>" :deps/root "extensions/sew-prf-runtime"}}}')" \
+BABASHKA_CLASSPATH="$(clojure -Spath -Sdeps '{:deps {org.protocol-robustness/prf-sew-runtime {:git/url "https://github.com/Sew-Protocol/prf-sew-model-extensions.git" :git/sha "5760c2b69fefd18b91bcbed033292d52e50dc9c9" :deps/root "extensions/sew-prf-runtime"}}}')" \
   bb profile:describe sew-financial-lifecycle
 ```
 

@@ -58,14 +58,13 @@ pin sibling Sew packages to an immutable Git revision, rather than depending on
 local checkout paths. Consumers can select the packages they need without
 loading every Sew adapter.
 
-## Existing `prf-sew-core-model` repository
+## Sew model extensions repository
 
-[`Sew-Protocol/prf-sew-core-model`](https://github.com/Sew-Protocol/prf-sew-core-model)
-already contains the Solidity Sew Core behavior adapter and its yield
-integration. The broader Sew model and extensions are maintained in this
-repository while preserving the existing package and its history. PRF adapter
-components pin the immutable package revisions used by their consumer profile
-checks.
+[`Sew-Protocol/prf-sew-model-extensions`](https://github.com/Sew-Protocol/prf-sew-model-extensions)
+contains the Solidity Sew Core behavior adapter, protocol model, and Sew-owned
+extensions. Package manifests pin immutable revisions from this repository.
+The original `prf-sew-core-model` repository remains the source history for the
+initial extraction; new consumer dependencies use this repository.
 
 ## PRF component migration map
 

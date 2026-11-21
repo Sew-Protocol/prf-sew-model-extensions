@@ -3,58 +3,58 @@
 ;; packages directly, while complete runner classpaths use this composition.
 {:paths ["resources"]
  :deps {org.protocol-robustness/prf-sew-core-model
-        {:git/url "https://github.com/Sew-Protocol/prf-sew-core-model.git"
+        {:git/url "https://github.com/Sew-Protocol/prf-sew-model-extensions.git"
          :git/sha "27919d0c9cf8bb5b94e77d4a3da566aa4d1f9649"
          :deps/root "."}
         org.protocol-robustness/prf-sew-protocol-model
-        {:git/url "https://github.com/Sew-Protocol/prf-sew-core-model.git"
+        {:git/url "https://github.com/Sew-Protocol/prf-sew-model-extensions.git"
          :git/sha "a931b1878c7187ae3fb1db2919b462cd59927407"
          :deps/root "packages/sew-protocol-model"}
         org.protocol-robustness/prf-sew-yield-integration
-        {:git/url "https://github.com/Sew-Protocol/prf-sew-core-model.git"
+        {:git/url "https://github.com/Sew-Protocol/prf-sew-model-extensions.git"
          :git/sha "27919d0c9cf8bb5b94e77d4a3da566aa4d1f9649"
          :deps/root "extensions/sew-yield-integration"}
         org.protocol-robustness/prf-sew-pro-rata-economics
-        {:git/url "https://github.com/Sew-Protocol/prf-sew-core-model.git"
+        {:git/url "https://github.com/Sew-Protocol/prf-sew-model-extensions.git"
          :git/sha "27919d0c9cf8bb5b94e77d4a3da566aa4d1f9649"
          :deps/root "extensions/sew-pro-rata-economics"}
         org.protocol-robustness/prf-sew-pro-rata-application
-        {:git/url "https://github.com/Sew-Protocol/prf-sew-core-model.git"
+        {:git/url "https://github.com/Sew-Protocol/prf-sew-model-extensions.git"
          :git/sha "27919d0c9cf8bb5b94e77d4a3da566aa4d1f9649"
          :deps/root "extensions/sew-pro-rata-application"}
         org.protocol-robustness/prf-sew-pro-rata-slashing
-        {:git/url "https://github.com/Sew-Protocol/prf-sew-core-model.git"
+        {:git/url "https://github.com/Sew-Protocol/prf-sew-model-extensions.git"
          :git/sha "27919d0c9cf8bb5b94e77d4a3da566aa4d1f9649"
          :deps/root "extensions/sew-pro-rata-slashing"}
         org.protocol-robustness/prf-sew-pro-rata-test-vectors
-        {:git/url "https://github.com/Sew-Protocol/prf-sew-core-model.git"
+        {:git/url "https://github.com/Sew-Protocol/prf-sew-model-extensions.git"
          :git/sha "27919d0c9cf8bb5b94e77d4a3da566aa4d1f9649"
          :deps/root "extensions/sew-pro-rata-test-vectors"}
         org.protocol-robustness/prf-sew-financial-lifecycle
-        {:git/url "https://github.com/Sew-Protocol/prf-sew-core-model.git"
+        {:git/url "https://github.com/Sew-Protocol/prf-sew-model-extensions.git"
          :git/sha "27919d0c9cf8bb5b94e77d4a3da566aa4d1f9649"
          :deps/root "extensions/sew-financial-lifecycle"}
         org.protocol-robustness/prf-sew-analysis
-        {:git/url "https://github.com/Sew-Protocol/prf-sew-core-model.git"
+        {:git/url "https://github.com/Sew-Protocol/prf-sew-model-extensions.git"
          :git/sha "27919d0c9cf8bb5b94e77d4a3da566aa4d1f9649"
          :deps/root "extensions/sew-analysis"}
         org.protocol-robustness/prf-sew-bounty-route
-        {:git/url "https://github.com/Sew-Protocol/prf-sew-core-model.git"
+        {:git/url "https://github.com/Sew-Protocol/prf-sew-model-extensions.git"
          :git/sha "27919d0c9cf8bb5b94e77d4a3da566aa4d1f9649"
          :deps/root "extensions/sew-bounty-route"}
         org.protocol-robustness/prf-sew-bounty
-        {:git/url "https://github.com/Sew-Protocol/prf-sew-core-model.git"
+        {:git/url "https://github.com/Sew-Protocol/prf-sew-model-extensions.git"
          :git/sha "27919d0c9cf8bb5b94e77d4a3da566aa4d1f9649"
          :deps/root "extensions/sew-bounty"}
         org.protocol-robustness/prf-sew-research-models
-        {:git/url "https://github.com/Sew-Protocol/prf-sew-core-model.git"
+        {:git/url "https://github.com/Sew-Protocol/prf-sew-model-extensions.git"
          :git/sha "27919d0c9cf8bb5b94e77d4a3da566aa4d1f9649"
          :deps/root "extensions/sew-research-models"}
         org.protocol-robustness/prf-sew-research
-        {:git/url "https://github.com/Sew-Protocol/prf-sew-core-model.git"
+        {:git/url "https://github.com/Sew-Protocol/prf-sew-model-extensions.git"
          :git/sha "27919d0c9cf8bb5b94e77d4a3da566aa4d1f9649"
          :deps/root "extensions/sew-research"}
         org.protocol-robustness/prf-sew-reference-validation
-        {:git/url "https://github.com/Sew-Protocol/prf-sew-core-model.git"
+        {:git/url "https://github.com/Sew-Protocol/prf-sew-model-extensions.git"
          :git/sha "27919d0c9cf8bb5b94e77d4a3da566aa4d1f9649"
          :deps/root "extensions/sew-reference-validation"}}}

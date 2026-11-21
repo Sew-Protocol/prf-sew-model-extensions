@@ -6,12 +6,12 @@
          :git/sha "4c4b9ac4b3bbbac3e44a47cb4df7d5197bee7dc3"
          :deps/root "."}
         org.protocol-robustness/prf-sew-protocol-model
-        {:git/url "https://github.com/Sew-Protocol/prf-sew-core-model.git"
+        {:git/url "https://github.com/Sew-Protocol/prf-sew-model-extensions.git"
          :git/sha "a931b1878c7187ae3fb1db2919b462cd59927407"
          :deps/root "packages/sew-protocol-model"}}
  :aliases {:test {:extra-paths ["test"]
                   :extra-deps {org.protocol-robustness/prf-sew-yield-integration
-                  {:git/url "https://github.com/Sew-Protocol/prf-sew-core-model.git"
+                  {:git/url "https://github.com/Sew-Protocol/prf-sew-model-extensions.git"
                    :git/sha "a931b1878c7187ae3fb1db2919b462cd59927407"
                    :deps/root "extensions/sew-yield-integration"}}
                   :main-opts ["-m" "resolver-sim.protocols.sew.analysis-test-runner"]}}}

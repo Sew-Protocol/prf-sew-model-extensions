@@ -23,7 +23,7 @@ For example, depend on the model package with:
 
 ```clojure
 org.protocol-robustness/prf-sew-protocol-model
-{:git/url "https://github.com/Sew-Protocol/prf-sew-core-model.git"
+{:git/url "https://github.com/Sew-Protocol/prf-sew-model-extensions.git"
  :git/sha "<immutable Sew commit>"
  :deps/root "packages/sew-protocol-model"}
 ```
