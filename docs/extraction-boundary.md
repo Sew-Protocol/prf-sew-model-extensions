@@ -5,20 +5,22 @@ the Sew package and PRF consumer boundary.
 
 ## Current PRF consumer status
 
-PRF profiles now resolve the Sew adapters from immutable Git subdirectory
-dependencies. The PRF working copy removed the local adapter directories, the
-obsolete local `workspaces/sew` overlay, and the duplicate
-`suites/sew-domain-reference-v1` outputs. The copied trace retained for one
-generic forensic-graph test is explicitly a non-authoritative test fixture.
+PRF profiles now resolve the Sew model and economic adapters from immutable
+Git subdirectory dependencies. The PRF working copy removed the production
+source/resource copies for the model, slash economics, pro-rata application,
+slashing evidence, yield integration, and financial lifecycle. Their local PRF
+directories are integration-test harnesses and dependency manifests. The Sew
+profile bundle supplies the financial-lifecycle, yield-integration, and
+pro-rata-application profiles. The local `workspaces/sew` overlay remains as
+development/test scaffolding. The five Sew scenario inputs and expected
+outputs are consumed from package resources and the canonical qualification
+suite. The PRF runner and its claims registry remain local because they include
+Force Authorization claims.
 
-The in-tree `packages/sew-protocol-model` mirror remains in PRF because its
-boundary overlaps Force Authorization work owned by another agent. The five
-Sew scenario inputs and expected outputs are consumed from the Sew package's
-classpath resources and canonical qualification suite. The PRF runner and its
-claims registry remain local because they include Force Authorization claims.
-
-PRF path checks and profile boundary/load checks passed after the adapter
-switch. The full PRF test suite was not run for that source-removal change.
+PRF path checks, package/profile boundary checks, the focused package suite
+(735 tests / 2,460 assertions), and the extraction integration suites passed.
+The package is still an unpublished candidate, so these results do not qualify
+a published artifact.
 
 ## Sew-owned candidate contents
 
@@ -73,7 +75,7 @@ means the PRF profile selects a pinned Sew subdirectory dependency.
 
 | PRF component | Candidate disposition |
 | --- | --- |
-| `:prf/sew-escrow-kernel-v1`, `:prf/sew-protocol-model-v1` | Model package exists here and is pinned from PRF profiles; PRF keeps its model mirror pending Force Authorization ownership work. |
+| `:prf/sew-escrow-kernel-v1`, `:prf/sew-protocol-model-v1` | Model package is owned here and pinned from PRF profiles; PRF's production source copy has been removed. Force Authorization remains a separate PRF-owned integration. |
 | `:prf/sew-yield-integration-v1` | External `extensions/sew-yield-integration/`; shared `:prf/yield-runtime-v1` remains in PRF. |
 | `:prf/sew-core-extension-v1` | Existing adapter under `src/prf/extensions/sew_core_model/`; its source and history remain in this repository. |
 | `:prf/sew-force-authorisation-v1` | Not included here; another agent owns this extraction. Keep it in PRF until that work is reviewed and switched. |
@@ -84,23 +86,29 @@ means the PRF profile selects a pinned Sew subdirectory dependency.
 | `:prf/sew-bounty-adapter-v1`, `:prf/sew-bounty-route-v1` | External `extensions/sew-bounty/` and `extensions/sew-bounty-route/`. Generic bounty composition remains in PRF. |
 | Sew domain-reference validation material | Canonical suite, inputs, and expected outputs are in `qualification/sew-domain-reference-v1/`; PRF keeps only trace artifacts required by its Solidity equivalence manifest. |
 
-Adapter profile dependencies and scenario resources are switched. The model
-mirror, PRF runner, claims registry, and shared components require separate
-ownership decisions and must not be removed as part of a bulk adapter cleanup.
+Adapter profile dependencies and scenario resources are switched. The PRF
+runner, claims registry, shared framework components, and Force Authorization
+integration retain separate ownership and must not be removed as part of a
+bulk adapter cleanup.
 
 ## Keep in PRF
 
 - Generic pro-rata allocation and its portable contract remain PRF concepts
   and implementations. Sew-specific settlement behavior belongs in this repo.
-- `config/defaults.edn` in the current `agent-c-3` workspace has no asset
-  decimals default. Its `:pro-rata-parallelism` value is execution tuning, not
-  an allocation rule.
+- `config/defaults.edn` in the current `agent-c-3` workspace sets the generic
+  yield fallback `:default-asset-decimals` to 18. `token-decimals` exposes this
+  fallback as metadata, while the current quantization functions ignore the
+  decimals argument and always floor to integer base units. It does not change
+  current numeric results and is a generic yield-runtime default, not Sew
+  settlement policy. Its `:pro-rata-parallelism` value is execution tuning.
 - Generic yield and liquid-lending suites remain PRF-owned. Examples and sample
   claims remain non-authoritative PRF examples unless a Sew application
   contract adopts them.
 - PRF now separates the generic `pro-rata` profile from the optional
-  `sew-pro-rata-application` profile. The latter still includes the in-tree
-  Sew model and is not an independently consumable package.
+  `sew-pro-rata-application` profile. The Sew financial-lifecycle,
+  yield-integration, and pro-rata application descriptors are supplied by this
+  repository's profile bundle; PRF still supplies the framework profile viewer
+  and component declarations needed to compose them.
 
 ## Sew domain-reference qualification suite
 
@@ -122,9 +130,9 @@ and illustrative inputs. It records the remaining PRF ownership boundaries.
 | Artifact group | Disposition |
 | --- | --- |
 | `protocols/sew/policies/default-slash-distribution-v1.edn` | Sew-owned policy is in `packages/sew-protocol-model/resources/sew/policies/`; PRF consumers now use the package resource. |
-| `config/defaults.edn` asset decimals | The inspected staging snapshot has `:yield/default-asset-decimals 18`; the current `agent-c-3` source no longer has this key. In the staging code, the value feeds `token-decimals`, but the current quantization functions ignore their decimals argument, so this fallback does not presently change numeric results. Keep the shared fallback with PRF unless the yield API semantics change; protocol deployments should supply token metadata explicitly. |
+| `config/defaults.edn` asset decimals | The current PRF source contains `:yield/default-asset-decimals 18`. It supplies generic token-decimal metadata, but the quantization functions currently ignore that argument and floor to integer base units. It does not presently change numeric results. Keep this generic yield-runtime fallback in PRF; Sew deployments should provide token metadata explicitly when they need a non-default value. |
 | Generic `profiles/pro-rata*.edn` and `pro-rata/portable-contract/` | Remain PRF-owned. The Sew-specific realization is copied under `extensions/sew-pro-rata-application/`; the generic allocation contract and portable profile stay in PRF. |
-| Sew yield and financial lifecycle profiles | The Sew yield integration and financial lifecycle code/tests are in `extensions/sew-yield-integration/` and `extensions/sew-financial-lifecycle/`. PRF profiles remain consumer compositions. |
+| Sew yield and financial lifecycle profiles | The implementations are in `extensions/sew-yield-integration/` and `extensions/sew-financial-lifecycle/`. Their profile descriptors are in the Sew package profile bundle and PRF discovers them from the pinned dependency classpath. |
 | Scenario assumptions and expected results | The five Sew domain-reference scenarios and expected results are in `qualification/sew-domain-reference-v1/`. PRF retains the trace artifacts referenced by its Solidity equivalence manifest. The similarly named economic-assumptions file is under generic `suites/reference-validation-v1`; yield and liquid-lending suites remain PRF-owned. |
 | Sew sample fixtures | `data/fixtures/protocol/sew.edn` is in `examples/sew-protocol-fixture.edn` as a non-authoritative sample. The aggregate held-credit contract and normative fixture are in `qualification/sew-aggregate-held-credit-v1/`. Their PRF copies have been removed. |
 | Examples and sample claims | The non-authoritative Sew economic assumptions example is now in `examples/economic-assumptions.edn` and has been removed from PRF. Generic pro-rata requests and yield demos remain PRF examples. The `sew-claims.edn` registry remains bundled with PRF's `sew-runner`; its claims have no validation dates, cite scenario files outside the extracted Sew suite, and include force-authorisation claims owned by other work. Do not present it as qualified evidence or move it as part of this extraction. |

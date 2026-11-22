@@ -7,10 +7,14 @@ from PRF. The root package exposes the Solidity adapter; model and application
 components are available through focused subdirectory packages.
 
 The original Sew Core package and its source history are retained. PRF profiles
-now resolve the adapter packages from this repository and the duplicate PRF
-adapter directories have been removed. PRF still retains its in-tree model
-mirror, runner integration, and scenario source copies pending separate
-ownership and consumer changes.
+now resolve the model and adapter packages from this repository. The PRF
+production copies of the Sew model, slash economics, pro-rata application,
+slashing evidence, yield integration, and financial lifecycle have been
+removed; local PRF directories remain only as integration-test harnesses and
+dependency manifests. The Sew domain-reference scenario inputs and expected
+outputs are package-owned. PRF retains its runner integration, Force
+Authorization integration, shared scenario catalogue, and Solidity trace
+artifacts needed for consumer tests and historical provenance.
 
 ## Dependencies
 
