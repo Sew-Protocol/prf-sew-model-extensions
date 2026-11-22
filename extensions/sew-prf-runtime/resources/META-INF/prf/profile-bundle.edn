@@ -29,7 +29,72 @@
             [:prf/ideal-pro-rata-v1
              :prf/sew-protocol-model-v1
              :prf/sew-pro-rata-economics-v1
-             :prf/sew-pro-rata-application-v1]}],
+             :prf/sew-pro-rata-application-v1]}
+  #:profile{:id :prf/sew-protocol-model-v1,
+            :name "sew-protocol-model",
+            :version 1,
+            :status :supported,
+            :protocol :prf.protocol/sew,
+            :components
+            [:prf/runner-v1
+             :prf/sew-protocol-model-v1
+             :prf/sew-yield-integration-v1
+             :prf/sew-force-authorisation-v1
+             :prf/sew-analysis-v1
+             :prf/sew-pro-rata-slashing-v1]}
+  #:profile{:id :prf/sew-protocol-candidate-v1,
+            :name "sew-protocol",
+            :version 1,
+            :status :candidate,
+            :protocol :prf.protocol/sew,
+            :extends :prf/framework-v1,
+            :components
+            [:prf/sew-protocol-model-v1
+             :prf/sew-yield-integration-v1
+             :prf/sew-force-authorisation-v1
+             :prf/sew-pro-rata-slashing-v1]}
+  #:profile{:id :prf/sew-protocol-model-core-candidate-v1,
+            :name "sew-protocol-model-core",
+            :version 1,
+            :status :candidate,
+            :protocol :prf.protocol/sew,
+            :extends :prf/framework-v1,
+            :components [:prf/sew-protocol-model-v1]}
+  #:profile{:id :prf/sew-kernel-candidate-v1,
+            :name "sew-kernel",
+            :version 1,
+            :status :candidate,
+            :protocol :prf.protocol/sew,
+            :extends :prf/framework-v1,
+            :components [:prf/sew-escrow-kernel-v1]}
+  #:profile{:id :prf/sew-research-candidate-v1,
+            :name "sew-research",
+            :version 1,
+            :status :candidate,
+            :protocol :prf.protocol/sew,
+            :extends :prf/framework-v1,
+            :components [:prf/sew-research-v1]}
+  #:profile{:id :prf/sew-research-models-candidate-v1,
+            :name "sew-research-models",
+            :version 1,
+            :status :candidate,
+            :protocol :prf.protocol/sew,
+            :extends :prf/framework-v1,
+            :components [:prf/sew-research-models-v1]}
+  #:profile{:id :prf/sew-bounty-route-candidate-v1,
+            :name "sew-bounty-route",
+            :version 1,
+            :status :candidate,
+            :protocol :prf.protocol/sew,
+            :extends :prf/framework-v1,
+            :components [:prf/bounty-v1 :prf/sew-bounty-route-v1]}
+  #:profile{:id :prf/sew-bounty-adapter-candidate-v1,
+            :name "sew-bounty-adapter",
+            :version 1,
+            :status :candidate,
+            :protocol :prf.protocol/sew,
+            :extends :prf/framework-v1,
+            :components [:prf/sew-bounty-adapter-v1]}],
  :components
  #:prf{:sew-escrow-kernel-v1
        #:component{:plane :protocol-kernel,
