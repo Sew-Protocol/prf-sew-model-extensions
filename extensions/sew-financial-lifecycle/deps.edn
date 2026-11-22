@@ -2,7 +2,7 @@
  :deps {org.clojure/clojure {:mvn/version "1.12.0"}
         org.protocol-robustness/prf-sew-protocol-model
         {:git/url "https://github.com/Sew-Protocol/prf-sew-model-extensions.git"
-         :git/sha "a96109cedad614d538885bc776a55db9789cab9b"
+         :git/sha "ec84dc9831329a77bdf3a23d720c167fb83314f6"
          :deps/root "packages/sew-protocol-model"}}
  :aliases {:test {:extra-paths ["test"
                                 "../sew-yield-integration/src"

@@ -9,7 +9,7 @@
          :deps/root "."}
         org.protocol-robustness/prf-sew-yield-integration
         {:git/url "https://github.com/Sew-Protocol/prf-sew-model-extensions.git"
-         :git/sha "a931b1878c7187ae3fb1db2919b462cd59927407"
+         :git/sha "ec84dc9831329a77bdf3a23d720c167fb83314f6"
          :deps/root "extensions/sew-yield-integration"}}
  :aliases {:reference-validation
            {:main-opts ["-m" "resolver-sim.protocols.sew.reference-validation-runner"]}
